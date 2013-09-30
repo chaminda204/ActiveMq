@@ -31,8 +31,8 @@ public abstract class AbstractMessagePublisher<T extends AbstractEntity> {
 	@Autowired
 	ActiveMQConnectionFactory connectionFactory;
 	
-	@Autowired
-	Destination destination;
+/*	@Autowired
+	Destination destination;*/
 
 	public void publishMessage(T domainClass) {
 		
@@ -44,6 +44,8 @@ public abstract class AbstractMessagePublisher<T extends AbstractEntity> {
 
 	        // Create a Session
 	        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+	        
+	        Destination destination = session.createQueue(getQueueDestination(domainClass));
 
 	        // Create a MessageProducer from the Session to the Topic or Queue
 	        MessageProducer producer = session.createProducer(destination);
@@ -81,7 +83,9 @@ public abstract class AbstractMessagePublisher<T extends AbstractEntity> {
 
 	}
 	
-	 protected abstract Message getMessage(Session session, T domainClass);
+	protected abstract  String getQueueDestination(T domainClass); 
+
+	protected abstract Message getMessage(Session session, T domainClass);
      
 
 }

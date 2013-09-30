@@ -39,9 +39,14 @@ public class ContextLoader {
 	public static void main(String[] args)
 	{
 		ProductMessagePublisher messagePublisher = (ProductMessagePublisher) ContextLoader.getBean("productMessagePublisher");
-		Product productMsg = ObjectFactory.createProduct(123L, "Milk", false, "WA");
-		messagePublisher.publishMessage(productMsg);
-
+		Product wa = ObjectFactory.createProduct(123L, "Milk", false, "WA");
+		messagePublisher.publishMessage(wa);
+		
+		Product nsw = ObjectFactory.createProduct(124L, "Bread", false, "NSW");
+		messagePublisher.publishMessage(nsw);
+		
+		Product vic = ObjectFactory.createProduct(125L, "Butter", false, "Vic");
+		messagePublisher.publishMessage(vic);
 	}
 
 }

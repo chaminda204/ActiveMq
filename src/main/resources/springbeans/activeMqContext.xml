@@ -30,13 +30,31 @@
 	</bean>
 
 	<!-- Message Listener Definition -->
-	<bean id="messageReceiver" class="com.chaminda.activemq.listener.ProductMessageListener">
+	<bean id="waMessageReceiver" class="com.chaminda.activemq.listener.WAProductMessageListener">
+	</bean>
+	
+	<bean id="nswMessageReceiver" class="com.chaminda.activemq.listener.NSWProductMessageListener">
+	</bean>
+	
+	<bean id="vicMessageReceiver" class="com.chaminda.activemq.listener.VicProductMessageListener">
 	</bean>
 
 	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destinationName" value="productQueue" />
-		<property name="messageListener" ref="messageReceiver" />
+		<property name="destinationName" value="order.processing.wa" />
+		<property name="messageListener" ref="waMessageReceiver" />
+	</bean>
+	
+	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destinationName" value="order.processing.nsw" />
+		<property name="messageListener" ref="nswMessageReceiver" />
+	</bean>
+	
+	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destinationName" value="order.processing.vic" />
+		<property name="messageListener" ref="vicMessageReceiver" />
 	</bean>
 
 </beans>

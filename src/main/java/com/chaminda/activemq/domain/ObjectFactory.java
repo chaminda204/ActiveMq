@@ -2,13 +2,13 @@
  * 
  */
 package com.chaminda.activemq.domain;
-
 /**
  * @author chaminda
  *         <p/>
  *         date 18/09/2013
  */
 public class ObjectFactory {
+	
 	private ObjectFactory() {
 
 	}

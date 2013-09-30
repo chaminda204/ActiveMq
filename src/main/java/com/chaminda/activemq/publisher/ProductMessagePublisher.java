@@ -37,4 +37,23 @@ public class ProductMessagePublisher extends AbstractMessagePublisher<Product> {
 		return message;
 	}
 
+	@Override
+	protected String getQueueDestination(Product product) {
+		
+		String queueDestination = null;
+		if(product.getState() != null && product.getState().equalsIgnoreCase("WA")){
+			queueDestination = "order.processing.wa";
+		}
+		else if(product.getState() != null && product.getState().equalsIgnoreCase("NSW")){
+			queueDestination = "order.processing.nsw";
+		}
+		else if(product.getState() != null && product.getState().equalsIgnoreCase("VIC")){
+			queueDestination = "order.processing.vic";
+		}
+		else{
+			queueDestination = "order.processing.other";
+		}
+		return queueDestination;
+	}
+
 }
