@@ -1,5 +1,6 @@
-This is a POC project and the purpose of this is to demonstrate the usage of activeMQ. 
-Later, the same scenario will be simplified using Appache Camel content based routing.  
+This is a POC project and the purpose of this is to demonstrate the usage of activeMQ.  
+Product messages are processed based on the state and this will be simplified using 
+Appache Camel content based routing (Not implemented yet).  
 
 
 This contains the set of instructions required to build and run ActiveMq application.
